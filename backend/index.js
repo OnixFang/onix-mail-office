@@ -7,7 +7,7 @@ const router = require('./routes');
 const app = express();
 app.use(express.json());
 Mongoose.connect(
-  'mongodb://localhost/onixpassmailDb',
+  process.env.MONGODB_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
