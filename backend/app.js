@@ -3,11 +3,14 @@ const express = require('express');
 const Mongoose = require('mongoose');
 const router = require('./routes');
 
+// Environment variables
+const { HOST, PORT, MONGODB_URL } = process.env;
+
 // App configuration
 const app = express();
 app.use(express.json());
 Mongoose.connect(
-  process.env.MONGODB_URL,
+  MONGODB_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -23,6 +26,6 @@ Mongoose.connect(
 
 app.use(router);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running at http://${process.env.HOST}:${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running at http://${HOST}:${PORT}`);
 });
