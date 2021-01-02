@@ -3,3 +3,20 @@
 @import './materialize-src/sass/materialize';
 
 // Global styles
+body {
+  background-color: color('grey', 'darken-2');
+}
+
+#root {
+  height: 100vh;
+}
+
+.letter-container {
+  background: url('./assets/letter-border.png') repeat-y;
+  padding: 20px 70px 20px 40px;
+}
+
+.letter {
+  background-image: url('./assets/letter-background.png');
+  font-size: 15pt;
+}

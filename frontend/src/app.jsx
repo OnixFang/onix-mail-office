@@ -6,27 +6,16 @@ import './app.scss';
 
 const App = (props) => {
   return (
-    <React.Fragment>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">
-            Logo
-          </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
-              <a href="sass.html">Sass</a>
-            </li>
-            <li>
-              <a href="badges.html">Components</a>
-            </li>
-            <li>
-              <a href="collapsible.html">JavaScript</a>
-            </li>
-          </ul>
+    <div className="row">
+      <div className="col s12 m4 push-m4">
+        <div className="letter-container">
+          <div className="letter">
+            I am a very simple card. I am good at containing small bits of information. I am convenient because I
+            require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+          </div>
         </div>
-      </nav>
-      <h1>This is the app!</h1>
-    </React.Fragment>
+      </div>
+    </div>
   );
 };
 
