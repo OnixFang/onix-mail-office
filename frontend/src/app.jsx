@@ -84,9 +84,8 @@ class App extends Component {
         </div>
 
         {/* ----------------- Letter modal ----------------- */}
-        <div id="letter-modal" className="modal grey darken-3">
+        <div id="letter-modal" className="modal modal-fixed-footer grey darken-3">
           <div className="modal-content">
-            <h4 className="white-text">Modal Header</h4>
             <LetterComponent letter={this.state.letter} />
           </div>
           <div className="modal-footer grey darken-2">
