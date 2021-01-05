@@ -1,0 +1,12 @@
+// Materialize and theme imports
+@import './theme';
+@import './materialize-src/sass/materialize';
+
+// Global styles
+body {
+  background-color: color('grey', 'darken-4');
+}
+
+#root {
+  height: 100vh;
+}

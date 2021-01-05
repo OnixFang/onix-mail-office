@@ -1,0 +1,38 @@
+.letter-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 14pt;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.letter {
+  background-color: #f0e9d2;
+  padding-right: 40px;
+  width: 600px;
+
+  @media (max-width: 420px) {
+    width: 400px;
+  }
+
+  .letter-content {
+    background-image: url('../assets/letter-background.png');
+    font-size: 15pt;
+    font-weight: lighter;
+    min-height: 439px;
+  }
+
+  .signature {
+    text-decoration: underline;
+  }
+
+  .date {
+    text-align: right;
+    text-decoration: underline;
+  }
+}
+
+.letter-edge {
+  width: 55px;
+  background: url('../assets/letter-edge-small.png') repeat-y;
+}

@@ -9,6 +9,13 @@ const { HOST, PORT, MONGODB_URL } = process.env;
 // App configuration
 const app = express();
 app.use(express.json());
+// CORS compliant request middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  next();
+});
+
+// Database connection
 Mongoose.connect(
   MONGODB_URL,
   {
