@@ -1,7 +1,8 @@
 const Letter = require('../models/letterModel');
 
 const getLetter = (req, res, next) => {
-  const { passcode } = req.body;
+  const { passcode } = req.query;
+
   Letter.findOne({ passcode: passcode }, '-passcode -_id -__v', (err, letter) => {
     if (err) {
       console.log(err);
