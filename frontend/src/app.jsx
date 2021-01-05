@@ -1,5 +1,6 @@
 // Modules
 import { Component } from 'react';
+import axios from 'axios';
 import './materialize-src/js/bin/materialize';
 
 // Styles
@@ -14,19 +15,36 @@ class App extends Component {
 
     this.state = {
       passcode: '',
-      letter: {
-        from: 'Yes',
-        date: '12/24/2020',
-        message:
-          'I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.',
-      },
+      errorMessage: '',
+      apiUrl: process.env.NODE_ENV === 'development' ? 'http://onixmailoffice:8091/letter' : '/letter',
+      letter: {},
     };
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const elem = document.getElementById('letter-modal');
-    M.Modal.getInstance(elem).open();
+    axios
+      .get(this.state.apiUrl, { params: { passcode: this.state.passcode } })
+      .then((response) => {
+        const letter = response.data;
+        letter.date = new Intl.DateTimeFormat('en-US').format(Date.parse(letter.date));
+        this.setState({ letter: letter });
+
+        const elem = document.getElementById('letter-modal');
+        M.Modal.getInstance(elem).open();
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.setState({ errorMessage: error.response.data });
+
+          const elem = document.getElementById('error-modal');
+          M.Modal.getInstance(elem).open();
+          console.log(error.response);
+        } else {
+          this.setState({ errorMessage: 'An error occurred processing your letter.' });
+          console.log(error);
+        }
+      });
   };
 
   handleInputChange = (event) => {
@@ -47,6 +65,7 @@ class App extends Component {
           <form onSubmit={this.handleSubmit} className="card grey darken-2 col s12 m6 push-m3">
             <div className="card-content white-text">
               <span className="card-title">Onix Mail Office</span>
+              <p>Enter your mail's passcode below:</p>
               <div className="row">
                 <div className="input-field col s12 white-text">
                   <input id="passcode" type="text" className="white-text" onChange={this.handleInputChange} />
@@ -64,10 +83,24 @@ class App extends Component {
           </form>
         </div>
 
+        {/* ----------------- Letter modal ----------------- */}
         <div id="letter-modal" className="modal grey darken-3">
           <div className="modal-content">
             <h4 className="white-text">Modal Header</h4>
             <LetterComponent letter={this.state.letter} />
+          </div>
+          <div className="modal-footer grey darken-2">
+            <a href="#!" className="modal-close waves-effect waves-green btn">
+              Close
+            </a>
+          </div>
+        </div>
+
+        {/* ------------------ Error modal ----------------- */}
+        <div id="error-modal" className="modal grey darken-3">
+          <div className="modal-content">
+            <h4 className="white-text">Error</h4>
+            <p>{this.state.errorMessage}</p>
           </div>
           <div className="modal-footer grey darken-2">
             <a href="#!" className="modal-close waves-effect waves-green btn">
