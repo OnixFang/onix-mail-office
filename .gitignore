@@ -6,6 +6,3 @@ node_modules
 
 # ESLint Cache
 .eslintcache
-
-# Build folder
-build
