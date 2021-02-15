@@ -1,0 +1,20 @@
+{
+  "name": "onix-mail-office",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/index.js",
+  "scripts": {
+    "build": "npm --prefix .\\frontend run build & rmdir /s /q .\\backend\\build & move .\\frontend\\build .\\backend",
+    "start": "npm --prefix .\\backend run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OnixFang/onix-mail-office.git"
+  },
+  "author": "OnixFang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OnixFang/onix-mail-office/issues"
+  },
+  "homepage": "https://github.com/OnixFang/onix-mail-office#readme"
+}
